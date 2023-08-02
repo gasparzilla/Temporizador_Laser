@@ -1,18 +1,23 @@
-
+// Definicion pines para sensores LASER
 const int LDT[] = {32, 35};
+// Inicializacion variable luminosidad laser
 int ll = 0;
+// Inicializacion variables temporizador
 double ti = 0, dt = 0;
 double vuelta = 0;
 
+// Configuracion inicial
 void setup() {
-  // put your setup code here, to run once:
+  // Inicializacion comunicacion serial
   Serial.begin(9600);
   delay(200);
 }
 
+// loop loop loop
 void loop() { 
   Serial.println("iniciando temporizador");
   delay(200);
+  // Iniciar Temporizador
   vuelta = timer();
   Serial.println(" --- --- ---");
   Serial.println("tiempo de vuelta:");
@@ -21,7 +26,7 @@ void loop() {
   delay(3000);  
 }
 
-
+// Funcion que llama al temporizador
 double timer() {
   checkLaser(0);
   ti = millis();
@@ -31,6 +36,7 @@ double timer() {
   return dt;
 }
 
+// Funcion que hace el conteo del tiempo
 void checkLaser(int i) {
   ll = analogRead(LDT[i]);
   Serial.print("valor LDT: ");  Serial.println(i);
